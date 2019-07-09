@@ -1,5 +1,8 @@
-package com.cheng.gong.BasicThread;
+package com.cheng.gong.basicthread;
 
+/**
+ * @author cheng gong
+ */
 public class ImplementsRunnable implements Runnable {
 
     @Override

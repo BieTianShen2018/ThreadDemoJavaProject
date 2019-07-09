@@ -1,10 +1,15 @@
-package com.cheng.gong.BasicThread;
+package com.cheng.gong.basicthread;
 
+/**
+ * @author cheng gong
+ */
 public class ExtendClassThread extends Thread{
 
-    //类成员变量
+    private final Object object = new Object();
+    /**
+     * variable
+     */
     private  int i = 10;
-    private  Object object = new Object();
     private String threadName= Thread.currentThread().getName();
 
     @Override
