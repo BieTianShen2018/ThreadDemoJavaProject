@@ -1,12 +1,14 @@
 import com.cheng.gong.basicthread.ExtendClassThread;
 import com.cheng.gong.basicthread.join.AsThread;
 import com.cheng.gong.basicthread.join.BsThread;
+import com.cheng.gong.basicthread.wait_notify.TheadNotify;
+import com.cheng.gong.basicthread.wait_notify.ThreadWait;
 
 /**
  * @author cheng gong
  */
 public class Main {
-    private final Object object = new Object();
+    private static final Object object = new Object();
     /**
      * Global variable
      */
@@ -14,10 +16,17 @@ public class Main {
 
     public static void main(String[] args) {
         //testVariable();
-        testJoinOne();
+        //testJoinOne();
+        testWaitNotify();
 
     }
 
+    private static void testWaitNotify() {
+        Thread t1 = new Thread(new ThreadWait(object));
+        Thread t2 = new Thread(new TheadNotify(object));
+        t1.start();
+        t2.start();
+    }
     private static void testJoinOne() {
         String threadName = Thread.currentThread().getName();
         System.out.println(threadName + " start.");
