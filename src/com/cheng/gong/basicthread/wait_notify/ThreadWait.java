@@ -2,6 +2,9 @@ package com.cheng.gong.basicthread.wait_notify;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * @author Administrator
+ */
 public class ThreadWait implements Runnable {
 
     private final Object lock;
@@ -12,14 +15,14 @@ public class ThreadWait implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("thread A is waiting to get lock");
+        System.out.println("thread wait 1 is waiting to get lock");
         synchronized (lock) {
             try {
-                System.out.println("thread A get lock");
+                System.out.println("thread 1 wait get lock");
                 TimeUnit.SECONDS.sleep(1);
-                System.out.println("thread A do wait method");
+                System.out.println("thread 1 wait do wait method");
                 lock.wait();
-                System.out.println("wait end");
+                System.out.println("thread 1 wait end");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
