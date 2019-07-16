@@ -3,12 +3,13 @@ import com.cheng.gong.basicthread.join.AsThread;
 import com.cheng.gong.basicthread.join.BsThread;
 import com.cheng.gong.basicthread.wait_notify.TheadNotify;
 import com.cheng.gong.basicthread.wait_notify.ThreadWait;
+import com.cheng.gong.basicthread.yield.ThreadYield;
 
 /**
  * @author cheng gong
  */
 public class Main {
-    private static final Object object = new Object();
+    private static final Object OBJEC = new Object();
     /**
      * Global variable
      */
@@ -17,13 +18,28 @@ public class Main {
     public static void main(String[] args) {
         //testVariable();
         //testJoinOne();
-        testWaitNotify();
-
+        //testWaitNotify();
+        testYield();
     }
 
+    private static void testYield() {
+        new ThreadYield().start();
+        new ThreadYield().start();
+        new ThreadYield().start();
+        new ThreadYield().start();
+        new ThreadYield().start();
+        new ThreadYield().start();
+        new ThreadYield().start();
+        new ThreadYield().start();
+//        try {
+//            Thread.sleep(1000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+    }
     private static void testWaitNotify() {
-        Thread t1 = new Thread(new ThreadWait(object));
-        Thread t2 = new Thread(new TheadNotify(object));
+        Thread t1 = new Thread(new ThreadWait(OBJEC));
+        Thread t2 = new Thread(new TheadNotify(OBJEC));
         t1.start();
         t2.start();
     }
@@ -58,7 +74,7 @@ public class Main {
     class MyThread extends Thread{
         @Override
         public void run() {
-            synchronized (object) {
+            synchronized (OBJEC) {
                 i++;
                 System.out.println("i:"+i);
                 try {
