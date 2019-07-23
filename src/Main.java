@@ -1,9 +1,13 @@
 import com.cheng.gong.basicthread.ExtendClassThread;
+import com.cheng.gong.basicthread.interrupt.InterruptThreadInBlocked;
+import com.cheng.gong.basicthread.interrupt.InterruptThreadInProgress;
 import com.cheng.gong.basicthread.join.AsThread;
 import com.cheng.gong.basicthread.join.BsThread;
 import com.cheng.gong.basicthread.wait_notify.TheadNotify;
 import com.cheng.gong.basicthread.wait_notify.ThreadWait;
 import com.cheng.gong.basicthread.yield.ThreadYield;
+
+import java.util.Date;
 
 /**
  * @author cheng gong
@@ -19,9 +23,38 @@ public class Main {
         //testVariable();
         //testJoinOne();
         //testWaitNotify();
-        testYield();
+        //testYield();
+        //testInterruptInBlocked();
+        testInterruptInProgress();
     }
 
+    private static void testInterruptInProgress() {
+        InterruptThreadInProgress thread = new InterruptThreadInProgress();
+        thread.start();
+        System.out.println(new Date().toString());
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+
+        }
+        System.out.println(new Date().toString());
+        thread.interrupt();
+        System.out.println(new Date().toString());
+    }
+
+    private static void testInterruptInBlocked() {
+        InterruptThreadInBlocked thread = new InterruptThreadInBlocked();
+        thread.start();
+        System.out.println(new Date().toString());
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+
+        }
+        System.out.println(new Date().toString());
+        thread.interrupt();
+        System.out.println(new Date().toString());
+    }
     private static void testYield() {
         new ThreadYield().start();
         new ThreadYield().start();
